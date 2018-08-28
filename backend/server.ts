@@ -1,5 +1,5 @@
 import * as jsonServer from 'json-server'
-import {Express} from 'express' 
+import {Express} from 'express'
 
 import * as fs from 'fs'
 import * as https from 'https'
@@ -22,7 +22,7 @@ server.use('/orders', handleAuthorization)
 server.use(router)
 
 
-const options ={
+const options = {
   cert: fs.readFileSync('./backend/keys/cert.pem'),
   key: fs.readFileSync('./backend/keys/key.pem')
 }
