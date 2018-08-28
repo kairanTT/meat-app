@@ -16,16 +16,16 @@ import {Observable} from 'rxjs/Observable'
 @Component({
   selector: 'mt-restaurants',
   templateUrl: './restaurants.component.html',
-  animations:[
+  animations: [
     trigger('toggleSearch', [
       state('hidden', style({
-        opacity:0,
-        "max-height": "0px"
+        opacity: 0,
+        'max-height': '0px'
       })),
       state('visible', style({
-        opacity:1,
-        "max-height":"70px",
-        "margin-top": "20px"
+        opacity: 1,
+        'max-height': '70px',
+        'margin-top': '20px'
       })),
       transition('* => *', animate('250ms 0s ease-in-out'))
     ])
@@ -40,7 +40,7 @@ export class RestaurantsComponent implements OnInit {
   searchControl: FormControl
 
   constructor(private restaurantService: RestaurantsService,
-              private fb: FormBuilder) { 
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class RestaurantsComponent implements OnInit {
     this.searchControl.valueChanges.debounceTime(500)
     .distinctUntilChanged()
     .switchMap(searchTerm => this.restaurantService.restaurants(searchTerm)
-    .catch(error =>Observable.from([])))
+    .catch(error => Observable.from([])))
     .subscribe(restaurants => this.restaurants = restaurants );
 
     this.restaurantService.restaurants()
@@ -60,7 +60,7 @@ export class RestaurantsComponent implements OnInit {
 
   }
 
-  toggleSearch(){
+  toggleSearch() {
     this.searchBarState = this.searchBarState === 'hidden' ? 'visible' : 'hidden'
   }
 
