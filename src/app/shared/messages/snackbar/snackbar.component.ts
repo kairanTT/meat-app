@@ -27,9 +27,9 @@ import 'rxjs/add/operator/switchMap';
 })
 export class SnackbarComponent implements OnInit {
 
-  message:string = 'Hello there!'
+  message= 'Hello there!'
 
-  snackVisibility:string = 'hidden'
+  snackVisibility= 'hidden'
 IfObservable
   constructor(private notificationService: NotificationService) { }
 
