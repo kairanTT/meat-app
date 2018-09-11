@@ -7,9 +7,9 @@ import { trigger, style, state, animate, transition } from '@angular/animations'
   templateUrl: './restaurant.component.html',
   animations: [
     trigger('restaurantAppeared', [
-      state('ready', style({opacity:1})) ,
+      state('ready', style({opacity: 1})) ,
       transition('void => ready', [
-        style({opacity: 0, transform:'translate(-30px, -10px)'}),
+        style({opacity: 0, transform: 'translate(-30px, -10px)'}),
         animate('300ms 0s ease-in-out')
       ])
     ])

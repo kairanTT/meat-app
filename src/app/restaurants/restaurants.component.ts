@@ -4,14 +4,9 @@ import { RestaurantsService } from './restaurants.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
-import 'rxjs/add/operator/switchMap'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/debounceTime'
-import 'rxjs/add/operator/distinctUntilChanged'
-import 'rxjs/add/operator/catch'
-import 'rxjs/add/observable/from'
+import {Observable, from} from 'rxjs'
 
-import {Observable} from 'rxjs/Observable'
+import {tap, switchMap, debounceTime, distinctUntilChanged, catchError} from 'rxjs/operators'
 
 @Component({
   selector: 'mt-restaurants',
@@ -48,10 +43,13 @@ export class RestaurantsComponent implements OnInit {
     this.searchForm = this.fb.group({
       searchControl: this.searchControl
     })
-    this.searchControl.valueChanges.debounceTime(500)
-    .distinctUntilChanged()
-    .switchMap(searchTerm => this.restaurantService.restaurants(searchTerm)
-    .catch(error => Observable.from([])))
+    this.searchControl.valueChanges.pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(searchTerm => this.restaurantService.restaurants(searchTerm).pipe(
+                catchError(error => from([])))
+      )
+    )
     .subscribe(restaurants => this.restaurants = restaurants );
 
     this.restaurantService.restaurants()

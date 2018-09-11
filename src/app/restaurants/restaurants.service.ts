@@ -1,11 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MEAT_API } from '../app.api';
 import { MenuItem } from '../restaurant-detail/menu-item/menu-item.model';
 import { Restaurant } from './restaurant/restaurant.model';
+
 
 @Injectable()
 export class RestaurantsService {
